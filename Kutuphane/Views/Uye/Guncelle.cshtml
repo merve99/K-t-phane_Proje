@@ -1,0 +1,47 @@
+﻿@model uyeler
+@{
+    ViewBag.Title = "Guncelle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<div class="w3-container w3-white">
+    <h2><i class="w3-xxlarge fa fa-book"></i>Üye Bilgilerini Güncelle</h2>
+</div>
+
+@using (Html.BeginForm("Guncelle", "Uye", FormMethod.Post, new { @class = "w3-container" }))
+{
+    <p>
+
+        <label class="thead-light"><b>Üye Adı</b></label>
+        <input class="w3-input w3-border w3-sand" name="ad" type="text" value="@Model.ad">
+    </p>
+    <p>
+        <label class="thead-light"><b>Soyadı</b></label>
+        <input class="w3-input w3-border w3-sand" name="soyad" type="text" value="@Model.soyad">
+    </p>
+    <p>
+        <label class="thead-light"><b>Mail Adresi</b></label>
+        <input class="w3-input w3-border w3-sand" name="mail" type="text" value="@Model.mail">
+    </p>
+    <p>
+        <label class="thead-light"><b>Kullanıcı Adı</b></label>
+        <input class="w3-input w3-border w3-sand" name="kullaniciadi" type="text" value="@Model.kullaniciadi">
+    </p>
+    <p>
+        <label class="thead-light"><b>Telefon Numarası</b></label>
+        <input class="w3-input w3-border w3-sand" name="telefon" type="text" value="@Model.telefon">
+    </p>
+    <p>
+        <label class="thead-light"><b>Şifresi</b></label>
+        <input class="w3-input w3-border w3-sand" name="sifre" type="text" value="@Model.sifre">
+    </p>
+    <p>
+        <label class="thead-light"><b>Okulu</b></label>
+        <input class="w3-input w3-border w3-sand" name="okul" type="text" value="@Model.okul">
+    </p>
+    <p>
+        <a href="/Uye/index/" class="w3-btn w3-red"><i class="fa fa-fast-backward"></i>&nbsp;Geri</a>
+        <button class="w3-btn w3-indigo" type="submit"><i class="fa fa-check"></i>&nbsp;Kaydet</button>
+    </p>
+}
+
+

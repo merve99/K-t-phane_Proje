@@ -1,0 +1,34 @@
+﻿@model IEnumerable<kategori>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<div class="w3-container">
+    <h2>KATEGORİLER</h2>
+    <a href="/Kategori/Yeni" class="w3-btn w3-teal">Yeni Kategori</a><br /><br />
+    <table class="w3-table-all">
+        <thead>
+            <tr class="w3-light-grey w3-hover-red">
+                <th>KATEGORİ ID</th>
+                <th>KATEGORİ ADI</th>
+                <th>İŞLEMLER</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr class="w3-hover-red">
+                <td>@item.id</td>
+                <td>@item.ad</td>
+                <td>
+                    <a href="/Kategori/Guncelle/@item.id" class="w3-btn w3-white w3-border w3-light-grey w3-round-large">Güncelle</a>
+                    <a href="/Kategori/Sil/@item.id" class="w3-btn w3-white w3-border w3-border-red w3-round-large">Sil</a>
+
+                </td>
+            </tr>
+        }
+    </table> 
+    @if(ViewBag.Mesaj== "< script > window.alert('Silme İşlemi Gerçekleştirilemedi!');</ script > ")
+    {
+        @Html.Raw(Server.HtmlEncode(ViewBag.Mesaj))
+    }
+</div>

@@ -1,0 +1,43 @@
+﻿@model kitap
+@{
+    ViewBag.Title = "Yeni";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<div class="w3-container w3-white">
+    <h2><i class="w3-xxlarge fa fa-book"></i>Yeni Kitap Ekle</h2>
+</div>
+
+@using (Html.BeginForm("Yeni", "Kitap", FormMethod.Post, new { @class = "w3-container" }))
+{
+    <p>
+
+        <label class="thead-light"><b>Kitap Adı</b></label>
+        <input class="w3-input w3-border w3-sand" name="ad" type="text">
+    </p>
+    <p>
+        <label class="thead-light"><b>Kategori</b></label>
+        @Html.DropDownListFor(model => model.kategori.id, (List<SelectListItem>)ViewBag.dgr1, new { @class = "w3-select" })
+    </p> 
+    <p>
+        <label class="thead-light"><b>Yazar</b></label>
+        @Html.DropDownListFor(model => model.yazar.id, (List<SelectListItem>)ViewBag.dgr2, new { @class = "w3-select" })
+    </p>
+    <p>
+        <label class="thead-light"><b>Basım Yılı</b></label>
+        <input class="w3-input w3-border w3-sand" name="basimyil" type="text">
+    </p>
+    <p>
+        <label class="thead-light"><b>Yayın Evi</b></label>
+        <input class="w3-input w3-border w3-sand" name="yayinevi" type="text">
+    </p>
+    <p>
+        <label class="thead-light"><b>Sayfa</b></label>
+        <input class="w3-input w3-border w3-sand" name="sayfa" type="text">
+    </p>
+    <p>
+        <a href="/Kitap/index/" class="w3-btn w3-red"><i class="fa fa-fast-backward"></i>&nbsp;Geri</a>
+        <button class="w3-btn w3-indigo" type="submit"><i class="fa fa-check"></i>&nbsp;Kaydet</button>
+    </p>
+}
+
+

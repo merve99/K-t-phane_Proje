@@ -1,0 +1,46 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<uyeler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<div class="w3-container">
+    <h2>Üyeler</h2>
+    <a href="/Uye/Yeni" class="w3-btn w3-teal">Yeni Üye Ekle</a><br /><br />
+
+    <table class="w3-table-all">
+        <thead>
+            <tr class="w3-light-grey w3-hover-red">
+                <th>ÜYE ID</th>
+                <th>ÜYE ADI</th>
+                <th>ÜYE SOYADI</th>
+                <th>MAİL</th>
+                <th>KULLANICI ADI</th>
+                <th>ŞİFRESİ</th>
+                <th>TELEFON</th>
+                <th>OKUL</th>
+                <th>İŞLEMLER</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr class="w3-hover-red">
+                <td>@item.id</td>
+                <td>@item.ad</td>
+                <td>@item.soyad</td>
+                <td>@item.mail</td>
+                <td>@item.kullaniciadi</td>
+                <td>@item.sifre</td>
+                <td>@item.telefon</td>
+                <td>@item.okul</td>
+                <td>
+                    <a href="/Uye/Guncelle/@item.id" class="w3-btn w3-white w3-border w3-light-grey w3-round-large">Güncelle</a>
+                    @Html.ActionLink("Sil", "Sil", new { id = item.id }, new { @class = "w3-btn w3-white w3-border w3-border-red w3-round-large", onclick = "return confirm('Silmek İstediğinizden Emin Misiniz?')" })
+                </td>
+            </tr>
+        }
+    </table>
+    @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("index", new { sayfa,@class = "w3 - button" }))
+</div>
+

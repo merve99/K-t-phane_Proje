@@ -1,0 +1,43 @@
+﻿@model hareket
+@{
+    ViewBag.Title = "Oduncver";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<div class="w3-container w3-white">
+    <h2><i class="w3-xxlarge fa fa-book"></i>Ödünç Kitap Ver</h2>
+</div>
+
+@using (Html.BeginForm("Oduncver", "Odunc", FormMethod.Post, new { @class = "w3-container" }))
+{
+    <p>
+
+        <label class="thead-light"><b>Üye ID</b></label>
+        <input class="w3-input w3-border w3-sand" name="uyeid" type="text">
+    </p>
+    <p>
+
+        <label class="thead-light"><b>Kitap ID</b></label>
+        <input class="w3-input w3-border w3-sand" name="kitapid" type="text">
+    </p>
+    <p>
+
+        <label class="thead-light"><b>Personel ID</b></label>
+        <input class="w3-input w3-border w3-sand" name="personelid" type="text">
+    </p>
+    <p>
+
+        <label class="thead-light"><b>Kitap Alış Tarihi</b></label>
+        <input class="w3-input w3-border w3-sand" name="alistarih" type="text" value="@DateTime.Now.ToShortDateString()">
+    </p>
+    <p>
+
+        <label class="thead-light"><b>Kitap İade Tarihi</b></label>
+        <input class="w3-input w3-border w3-sand" name="iadetarih" type="text" value="@DateTime.Now.AddDays(7).ToShortDateString()">
+    </p>
+    <p>
+        <button class="w3-btn w3-indigo" type="submit"><i class="fa fa-check"></i>&nbsp;Kaydet</button>
+    </p>
+}
+
+
+

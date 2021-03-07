@@ -1,0 +1,35 @@
+﻿@model IEnumerable<hareket>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<div class="w3-container">
+    <h2><i class="w3-xxlarge fa fa-book"></i>Ödünç Kitap Al</h2>
+    <table class="w3-table-all">
+        <thead>
+            <tr class="w3-light-grey w3-hover-red">
+                <th>İşlem ID</th>
+                <th>Kitap ADI</th>
+                <th>ÜYE</th>
+                <th>PERSONEL</th>
+                <th>ALIŞ TARİHİ</th>
+                <th>İADE TARİHİ</th>
+                <th>İŞLEMLER</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr class="w3-hover-red">
+                <td>@item.id</td>
+                <td>@item.kitap.ad</td>
+                <td>@(item.uyeler.ad + " " + item.uyeler.soyad)</td>
+                <td>@item.personel.personel1</td>
+                <td>@Convert.ToDateTime(item.alistarih).ToString("dd/MM/yyyy")</td>
+                <td>@Convert.ToDateTime(item.iadetarih).ToString("dd/MM/yyyy")</td>
+                <td>
+                    <a href="/Odunc/Odunciade/@item.id" class="w3-btn w3-indigo" type="submit"><i class="fa fa-check"></i>&nbsp;Kitabı İade Et</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

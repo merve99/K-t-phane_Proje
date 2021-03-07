@@ -1,0 +1,52 @@
+﻿@model hareket
+@{
+                /**/
+
+                ViewBag.Title = "Odunciade";
+                Layout = "~/Views/Shared/Layout.cshtml";
+}
+<div class="w3-container w3-white">
+    <h2><i class="w3-xxlarge fa fa-book"></i>Kitabı Ödünç Al</h2>
+</div>
+
+@using (Html.BeginForm("Odunciade", "Odunc", FormMethod.Post, new { @class = "w3-container" }))
+{
+    <p>
+
+        <label class="thead-light"><b>Üye Adı</b></label>
+        @Html.TextBoxFor(x => x.uyeler.ad, new { @class = "w3-input w3-border w3-sand" })
+    </p>
+    <p>
+
+        <label class="thead-light"><b>Kitap Adı</b></label>
+        @Html.TextBoxFor(x => x.kitap.ad, new { @class = "w3-input w3-border w3-sand" })
+    </p>
+    <p>
+
+        <label class="thead-light"><b>Personel</b></label>
+        @Html.TextBoxFor(x => x.personel.personel1, new { @class = "w3-input w3-border w3-sand" })
+    </p>
+    <p>
+
+        <label class="thead-light"><b>Kitap Alış Tarihi</b></label>
+        @Html.TextBoxFor(x => x.alistarih, "{0: dd.MM.yyyy}", new { @class = "w3-input w3-border w3-sand" })
+    </p>
+    <p>
+
+        <label class="thead-light"><b>Kitap İade Tarihi</b></label>
+        @Html.TextBoxFor(x => x.iadetarih, "{0: dd.MM.yyyy}", new { @class = "w3-input w3-border w3-sand" })
+    </p>
+    <p>
+
+        <label class="thead-light"><b>Üyenin Getirdiği Tarih</b></label>
+        <input class="w3-input w3-border w3-sand" name="uyegetirtarih" value="@DateTime.Now.ToShortDateString()">
+    </p>
+    <p>
+        <label class="thead-light"><b>Geç Getirilen Gün Sayısı</b></label>
+        <input class="w3-input w3-border w3-sand" type="text" id="Gecinput" value="@ViewBag.dgr"/>
+    </p>
+    <p>
+        <button class="w3-btn w3-indigo" type="submit"><i class="fa fa-check"></i>&nbsp;Kaydet</button>
+    </p>
+}
+

@@ -1,0 +1,36 @@
+﻿@model Kutuphane.Models.Entity.kategori
+
+@{
+    ViewBag.Title = "Yeni";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="w3-container w3-white">
+    <h2><i class="w3-xxlarge fa fa-pencil"></i>Yeni Kategori Oluştur</h2>
+</div>
+
+@using (Html.BeginForm("Yeni", "Kategori", FormMethod.Post, new { @class = "w3-container" }))
+{
+    <p>
+        <label class="thead-light"><b>Kategori Adı</b></label>
+        <input class="w3-input w3-border w3-sand" name="ad" type="text">
+    </p>
+    <p>
+        <a href="/Kategori/index/" class="w3-btn w3-red"><i class="fa fa-fast-backward"></i>&nbsp;Geri</a>
+        <button class="w3-btn w3-indigo" type="submit"><i class="fa fa-check"></i>&nbsp;Kaydet</button>
+    </p>
+    if (ViewBag.Durum == "Success")
+    {
+        <div class="w3-panel w3-green w3-round-xxlarge">
+            <h3>Başarılı!</h3>
+            <p>Yeni Kategori Oluşturuldu.</p>
+        </div>
+    }
+    if (ViewBag.Durum == "Danger")
+    {
+        <div class="w3-panel w3-red w3-round-xxlarge">
+            <h3>Başarısız!</h3>
+            <p>Yeni Kategori Oluşturulamadı.</p>
+        </div>
+    }
+}

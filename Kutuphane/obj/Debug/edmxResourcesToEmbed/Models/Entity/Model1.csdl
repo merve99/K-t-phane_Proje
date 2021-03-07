@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="kutuphaneModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="cezalar">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="baslangic" Type="DateTime" Precision="0" />
+    <Property Name="bitis" Type="DateTime" Precision="0" />
+    <Property Name="para" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="uyeid" Type="Int32" />
+    <Property Name="hareketid" Type="Int32" />
+    <NavigationProperty Name="hareket" Relationship="Self.FK__cezalar__hareket__693CA210" FromRole="cezalar" ToRole="hareket" />
+    <NavigationProperty Name="uyeler" Relationship="Self.FK__cezalar__uyeid__68487DD7" FromRole="cezalar" ToRole="uyeler" />
+  </EntityType>
+  <EntityType Name="hareket">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="alistarih" Type="DateTime" Precision="0" />
+    <Property Name="iadetarih" Type="DateTime" Precision="0" />
+    <Property Name="kitapid" Type="Int32" />
+    <Property Name="uyeid" Type="Int32" />
+    <Property Name="personelid" Type="Byte" />
+    <NavigationProperty Name="cezalar" Relationship="Self.FK__cezalar__hareket__693CA210" FromRole="hareket" ToRole="cezalar" />
+    <NavigationProperty Name="kitap" Relationship="Self.FK__hareket__kitapid__6383C8BA" FromRole="hareket" ToRole="kitap" />
+    <NavigationProperty Name="personel" Relationship="Self.FK__hareket__persone__656C112C" FromRole="hareket" ToRole="personel" />
+    <NavigationProperty Name="uyeler" Relationship="Self.FK__hareket__uyeid__6477ECF3" FromRole="hareket" ToRole="uyeler" />
+    <Property Name="islemdurum" Type="Boolean" />
+    <Property Name="uyegetirtarih" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="kasa">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ay" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="tuttar" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="kategori">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="kitap" Relationship="Self.FK__kitap__kategorii__4D94879B" FromRole="kategori" ToRole="kitap" />
+  </EntityType>
+  <EntityType Name="kitap">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="basimyil" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="yayinevi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sayfa" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="kategoriid" Type="Byte" />
+    <Property Name="yazarid" Type="Int32" />
+    <Property Name="durum" Type="Boolean" />
+    <NavigationProperty Name="hareket" Relationship="Self.FK__hareket__kitapid__6383C8BA" FromRole="kitap" ToRole="hareket" />
+    <NavigationProperty Name="kategori" Relationship="Self.FK__kitap__kategorii__4D94879B" FromRole="kitap" ToRole="kategori" />
+    <NavigationProperty Name="yazar" Relationship="Self.FK__kitap__yazarid__4E88ABD4" FromRole="kitap" ToRole="yazar" />
+    <Property Name="kitapresim" Type="Binary" MaxLength="250" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="personel">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="personel1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="hareket" Relationship="Self.FK__hareket__persone__656C112C" FromRole="personel" ToRole="hareket" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="uyeler">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="soyad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="kullaniciadi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="fotograf" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="telefon" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="okul" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="cezalar" Relationship="Self.FK__cezalar__uyeid__68487DD7" FromRole="uyeler" ToRole="cezalar" />
+    <NavigationProperty Name="hareket" Relationship="Self.FK__hareket__uyeid__6477ECF3" FromRole="uyeler" ToRole="hareket" />
+  </EntityType>
+  <EntityType Name="yazar">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ad" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="soyad" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="detay" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="kitap" Relationship="Self.FK__kitap__yazarid__4E88ABD4" FromRole="yazar" ToRole="kitap" />
+  </EntityType>
+  <Association Name="FK__cezalar__hareket__693CA210">
+    <End Role="hareket" Type="Self.hareket" Multiplicity="0..1" />
+    <End Role="cezalar" Type="Self.cezalar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hareket">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cezalar">
+        <PropertyRef Name="hareketid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__cezalar__uyeid__68487DD7">
+    <End Role="uyeler" Type="Self.uyeler" Multiplicity="0..1" />
+    <End Role="cezalar" Type="Self.cezalar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="uyeler">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cezalar">
+        <PropertyRef Name="uyeid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__hareket__kitapid__6383C8BA">
+    <End Role="kitap" Type="Self.kitap" Multiplicity="0..1" />
+    <End Role="hareket" Type="Self.hareket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kitap">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="hareket">
+        <PropertyRef Name="kitapid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__hareket__persone__656C112C">
+    <End Role="personel" Type="Self.personel" Multiplicity="0..1" />
+    <End Role="hareket" Type="Self.hareket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="personel">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="hareket">
+        <PropertyRef Name="personelid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__hareket__uyeid__6477ECF3">
+    <End Role="uyeler" Type="Self.uyeler" Multiplicity="0..1" />
+    <End Role="hareket" Type="Self.hareket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="uyeler">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="hareket">
+        <PropertyRef Name="uyeid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__kitap__kategorii__4D94879B">
+    <End Role="kategori" Type="Self.kategori" Multiplicity="0..1" />
+    <End Role="kitap" Type="Self.kitap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kategori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="kitap">
+        <PropertyRef Name="kategoriid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__kitap__yazarid__4E88ABD4">
+    <End Role="yazar" Type="Self.yazar" Multiplicity="0..1" />
+    <End Role="kitap" Type="Self.kitap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="yazar">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="kitap">
+        <PropertyRef Name="yazarid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="kutuphaneEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="cezalar" EntityType="Self.cezalar" />
+    <EntitySet Name="hareket" EntityType="Self.hareket" />
+    <EntitySet Name="kasa" EntityType="Self.kasa" />
+    <EntitySet Name="kategori" EntityType="Self.kategori" />
+    <EntitySet Name="kitap" EntityType="Self.kitap" />
+    <EntitySet Name="personel" EntityType="Self.personel" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="uyeler" EntityType="Self.uyeler" />
+    <EntitySet Name="yazar" EntityType="Self.yazar" />
+    <AssociationSet Name="FK__cezalar__hareket__693CA210" Association="Self.FK__cezalar__hareket__693CA210">
+      <End Role="hareket" EntitySet="hareket" />
+      <End Role="cezalar" EntitySet="cezalar" />
+    </AssociationSet>
+    <AssociationSet Name="FK__cezalar__uyeid__68487DD7" Association="Self.FK__cezalar__uyeid__68487DD7">
+      <End Role="uyeler" EntitySet="uyeler" />
+      <End Role="cezalar" EntitySet="cezalar" />
+    </AssociationSet>
+    <AssociationSet Name="FK__hareket__kitapid__6383C8BA" Association="Self.FK__hareket__kitapid__6383C8BA">
+      <End Role="kitap" EntitySet="kitap" />
+      <End Role="hareket" EntitySet="hareket" />
+    </AssociationSet>
+    <AssociationSet Name="FK__hareket__persone__656C112C" Association="Self.FK__hareket__persone__656C112C">
+      <End Role="personel" EntitySet="personel" />
+      <End Role="hareket" EntitySet="hareket" />
+    </AssociationSet>
+    <AssociationSet Name="FK__hareket__uyeid__6477ECF3" Association="Self.FK__hareket__uyeid__6477ECF3">
+      <End Role="uyeler" EntitySet="uyeler" />
+      <End Role="hareket" EntitySet="hareket" />
+    </AssociationSet>
+    <AssociationSet Name="FK__kitap__kategorii__4D94879B" Association="Self.FK__kitap__kategorii__4D94879B">
+      <End Role="kategori" EntitySet="kategori" />
+      <End Role="kitap" EntitySet="kitap" />
+    </AssociationSet>
+    <AssociationSet Name="FK__kitap__yazarid__4E88ABD4" Association="Self.FK__kitap__yazarid__4E88ABD4">
+      <End Role="yazar" EntitySet="yazar" />
+      <End Role="kitap" EntitySet="kitap" />
+    </AssociationSet>
+    <EntitySet Name="iletisim" EntityType="kutuphaneModel.iletisim" />
+  </EntityContainer>
+  <EntityType Name="iletisim">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="adsoyad" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="mesaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>
